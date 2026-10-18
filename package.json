@@ -1,0 +1,13 @@
+{
+  "name": "commitcraft",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Git diff in, perfect commit message + PR description out. Google Gemma 4 (open-weight). Web app, zero-dependency CLI and Agent Skill.",
+  "keywords": ["git", "commit-message", "conventional-commits", "pull-request", "gemma", "gemma-4", "agent-skill", "cli", "hacktoberfest"],
+  "bin": { "commitcraft": "cli.js" },
+  "files": ["cli.js", "lib/", "api/_gemma.js", "skills/"],
+  "scripts": { "dev": "node server.js", "cli": "node cli.js" },
+  "engines": { "node": ">=18" },
+  "author": "Ayush Yadav",
+  "license": "MIT"
+}

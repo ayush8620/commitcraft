@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CommitCraft · Perfect commits & PRs from your diff</title>
+<meta name="description" content="Paste a git diff. Google Gemma 4 writes the commit message, PR title, PR description and a quick review. Web app, CLI and Agent Skill.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">✍️</div>CommitCraft</div>
+    <span class="pill">Google Gemma 4 · Web · CLI · Agent Skill</span>
+  </header>
+  <section class="hero">
+    <h1>"fix stuff" is not a commit message.</h1>
+    <p>Paste your <code>git diff</code> and Gemma 4 writes a Conventional Commit, a PR title and a reviewer-friendly PR description, and flags leftover debug code or missing tests. Same brain in the terminal (<code>git diff --staged | npx commitcraft</code>) and as an Agent Skill for coding agents.</p>
+  </section>
+  <div class="grid">
+    <div class="card">
+      <h2>Your diff</h2>
+      <textarea id="diff" style="min-height:300px" placeholder="Run: git diff --staged | pbcopy   (or xclip / clip) and paste here"></textarea>
+      <div class="row" style="margin-top:4px">
+        <div style="flex:1;min-width:140px"><label for="style">Style</label><select id="style"><option value="conventional">Conventional Commits</option><option value="gitmoji">Gitmoji</option><option value="simple">Simple</option></select></div>
+        <div style="flex:1;min-width:120px"><label for="issue">Issue (optional)</label><input type="text" id="issue" placeholder="#42"></div>
+      </div>
+      <label for="note">Why did you make this change? (optional)</label>
+      <input type="text" id="note" placeholder="Users were logged out on refresh">
+      <div class="row" style="margin-top:16px">
+        <button id="go">Craft commit & PR</button>
+        <button class="ghost" id="sample" type="button">Try a sample diff</button>
+      </div>
+      <div id="error"></div>
+    </div>
+    <div class="card" id="out"><div class="empty">Commit message, PR description and review notes appear here.<br><span class="small">Lockfiles and binaries are skipped automatically. Nothing is stored.</span></div></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h2>Use it in your terminal or agent</h2>
+    <pre>git clone https://github.com/ayush8620/commitcraft && cd your-project
+export GEMINI_API_KEY=your_key
+git add -p
+git diff --staged | node ../commitcraft/cli.js            # print commit + PR
+node ../commitcraft/cli.js --style gitmoji --issue "#42" --commit   # asks, then commits</pre>
+    <p class="muted small">Coding agents: copy <code>skills/commitcraft/</code> into your agent's skills folder (Agent Skill open standard, SKILL.md).</p>
+  </div>
+  <footer>CommitCraft is an open-source MIT project by Ayush Yadav · Built at MLH Hacktoberfest Hack Day Prayagraj 3.0</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
